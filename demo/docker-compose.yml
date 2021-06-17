@@ -1,0 +1,23 @@
+version: "3.9"
+# bring config up >> docker compose up -d
+# bring world down (-v -- delete database volume) >> docker compose down -v
+# check status >> docker compose logs db
+# check logs >> docker compose logs db -f
+# зайти в БД >> docker compose exec db bash
+# pfqnb d БД2 >> mysql --user=root --password=root --database=root
+services:
+  db:
+    image: mysql:5.7.30
+    volumes:
+      - db_data:/var/lib/mysql
+    ports:
+      - 0.0.0.0:3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: root
+      MYSQL_USER: root
+      MYSQL_PASSWORD: 123
+    restart: always
+
+volumes:
+  db_data: {}
